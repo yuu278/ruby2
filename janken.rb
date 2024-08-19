@@ -12,14 +12,16 @@ def janken
   if jankens[select_number]
     puts "あなた：#{jankens[select_number]}を出しました"
     puts "相手：#{jankens[program_number]}を出しました"
+    
 
   elsif select_number == 3
     puts "あなたは戦いません"
-    exit
+    return false
+
 
   else
     puts "0~3までの数字を入力してください"
-    exit
+    return false
   end
 
  case
@@ -30,14 +32,14 @@ def janken
   when (select_number == 0 && program_number == 1)||(select_number ==1 && program_number ==2)||(select_number ==2 && program_number == 0)
     puts "じゃんけんに勝ちました。あっちむいて〜"
     $case_pattern = "win"
-    attimuite_hoi
-    return false
+    
+    return attimuite_hoi
 
   else
     puts "じゃんけんに負けました。あっちむいて〜"
     $case_pattern = "lose"
-     attimuite_hoi
-    return false
+     
+    return attimuite_hoi
   end
 end
 
@@ -56,11 +58,9 @@ def attimuite_hoi
         case
         when selecter == program
             puts "あなたの勝ちです"
-            exit
             return false
         else
             puts "引き分けです"
-            janken
             return true
 
         end
@@ -73,8 +73,7 @@ def attimuite_hoi
             return false
         else
             puts "引き分けです"
-            janken
-            return true
+           return true
 
         end
     end
@@ -85,4 +84,3 @@ next_game = true
 while next_game
  next_game = janken 
 end
-
